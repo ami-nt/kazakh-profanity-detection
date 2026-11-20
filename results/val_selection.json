@@ -1,0 +1,140 @@
+{
+  "chosen_settings": {
+    "analyzer": "char_wb",
+    "ngram_range": [
+      2,
+      4
+    ],
+    "fold": true,
+    "C": 16.0,
+    "class_weight": "balanced",
+    "min_df": 2,
+    "sublinear_tf": true,
+    "max_iter": 5000,
+    "window": 30,
+    "use_synthetic": false
+  },
+  "threshold": 0.3757444170795643,
+  "validation_at_threshold": {
+    "f1": 0.9464922711058265,
+    "precision": 0.9453681710213777,
+    "recall": 0.9476190476190476,
+    "ap": 0.9830532845921424
+  },
+  "alternative_threshold_recall_target": {
+    "threshold": 0.3614690061904635,
+    "precision": 0.9366197183098591,
+    "recall": 0.95
+  },
+  "synthetic_ablation": {
+    "with_synthetic": {
+      "f1": 0.9400479616306954,
+      "precision": 0.9468599033816425,
+      "recall": 0.9333333333333333,
+      "ap": 0.9816842395606113,
+      "threshold": 0.42587823672419267,
+      "train_rows": 5690
+    },
+    "without_synthetic": {
+      "f1": 0.9464922711058265,
+      "precision": 0.9453681710213777,
+      "recall": 0.9476190476190476,
+      "ap": 0.9830532845921424,
+      "threshold": 0.3757444170795643,
+      "train_rows": 4495
+    }
+  },
+  "settings_tried": 192,
+  "top5": [
+    {
+      "analyzer": "char_wb",
+      "ngram_range": "2-4",
+      "fold": true,
+      "C": 16.0,
+      "class_weight": "balanced",
+      "window": 30.0,
+      "use_synthetic": true,
+      "vocab": 24266,
+      "val_f1": 0.9400479616306954,
+      "val_precision": 0.9468599033816425,
+      "val_recall": 0.9333333333333333,
+      "threshold": 0.42587823672419267,
+      "val_ap": 0.9816842395606113,
+      "val_f1_at_0.5": 0.9330085261875761
+    },
+    {
+      "analyzer": "char_wb",
+      "ngram_range": "2-4",
+      "fold": true,
+      "C": 16.0,
+      "class_weight": "balanced",
+      "window": NaN,
+      "use_synthetic": true,
+      "vocab": 24266,
+      "val_f1": 0.9397590361445782,
+      "val_precision": 0.9512195121951219,
+      "val_recall": 0.9285714285714286,
+      "threshold": 0.42587823672419267,
+      "val_ap": 0.9817037143860132,
+      "val_f1_at_0.5": 0.9328449328449329
+    },
+    {
+      "analyzer": "char_wb",
+      "ngram_range": "2-4",
+      "fold": true,
+      "C": 16.0,
+      "class_weight": NaN,
+      "window": NaN,
+      "use_synthetic": true,
+      "vocab": 24266,
+      "val_f1": 0.9395017793594306,
+      "val_precision": 0.9361702127659575,
+      "val_recall": 0.9428571428571428,
+      "threshold": 0.3604962501537448,
+      "val_ap": 0.9816984478137571,
+      "val_f1_at_0.5": 0.9328449328449329
+    },
+    {
+      "analyzer": "char_wb",
+      "ngram_range": "2-5",
+      "fold": true,
+      "C": 16.0,
+      "class_weight": NaN,
+      "window": 30.0,
+      "use_synthetic": true,
+      "vocab": 42817,
+      "val_f1": 0.9392133492252681,
+      "val_precision": 0.9403341288782816,
+      "val_recall": 0.9380952380952381,
+      "threshold": 0.4027780214112415,
+      "val_ap": 0.9820170385355024,
+      "val_f1_at_0.5": 0.9320388349514563
+    },
+    {
+      "analyzer": "char_wb",
+      "ngram_range": "2-5",
+      "fold": true,
+      "C": 16.0,
+      "class_weight": "balanced",
+      "window": 30.0,
+      "use_synthetic": true,
+      "vocab": 42817,
+      "val_f1": 0.9392133492252681,
+      "val_precision": 0.9403341288782816,
+      "val_recall": 0.9380952380952381,
+      "threshold": 0.3997362326122345,
+      "val_ap": 0.9820043539191476,
+      "val_f1_at_0.5": 0.9307411907654921
+    }
+  ],
+  "model_file": "models\\model.joblib",
+  "trained_at": "2026-11-18T12:42:22+00:00",
+  "train_rows": 4495,
+  "val_rows": 962,
+  "python": "3.12.10",
+  "scikit_learn": "1.9.1",
+  "val_f1": 0.9464922711058265,
+  "val_precision": 0.9453681710213777,
+  "val_recall": 0.9476190476190476,
+  "val_average_precision": 0.9830532845921424
+}

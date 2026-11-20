@@ -1,0 +1,49 @@
+# All settings in one place. Every script reads this file.
+seed: 42
+
+paths:
+  raw_dir: data/raw                       # KazSAnDRA CSVs (not committed, see data/README.md)
+  pool_csv: labeling/pool.csv             # plain copy of the labeling pool
+  labeling_xlsx: labeling/labeling_sheet.xlsx
+  labeled_csv: data/labeled.csv           # final human-labeled dataset (committed)
+  splits_dir: data/splits                 # train/val/test CSVs + split assignment (committed)
+  model_path: models/model.joblib         # published as a GitHub Release asset
+  results_dir: results
+
+kazsandra:
+  commit: d769cf7f7bd62b59f88915508d4bc062310b54d6   # pinned for reproducibility
+  files: [06_sc_train_ib.zip, 09_sc_valid.zip, 10_sc_test.zip]  # all 5 star ratings
+
+pool:                                      # how many comments go into the labeling sheet
+  n_lookalike: 300                         # innocent words that resemble profane roots
+  n_insult: 500                            # insult words (мал, ақымақ, ...); 1 if insulting (guidelines 1.1)
+  n_one_star: 1500                         # angry reviews without profanity
+  n_random: 1500                           # everything else
+  one_star_domain_share: {appstore: 0.60, market: 0.25, mapping: 0.10, bookstore: 0.05}
+  random_domain_share: {appstore: 0.55, market: 0.25, mapping: 0.12, bookstore: 0.08}
+
+split:
+  val_size: 0.15
+  test_size: 0.15
+  near_dup_threshold: 0.8                  # cosine on hashed char 3-5-grams
+
+augment:                                   # synthetic copies, TRAIN split only
+  max_fraction_of_positives: 0.3           # masked copies of real training positives
+  n_latin_per_class: 150                   # Latin-script copies, same number per class
+  n_russian_letters_per_class: 150         # қ->к style copies, same number per class
+
+model:
+  fixed:
+    min_df: 2
+    sublinear_tf: true
+    max_iter: 5000
+  grid:                                    # searched on the validation split only
+    analyzer: [char_wb, char]
+    ngram_range: [[2, 4], [2, 5], [2, 6]]   # no 1-grams: a lone space would act as a length feature
+    fold: [false, true]                    # map Kazakh letters to Russian look-alikes
+    C: [1.0, 4.0, 16.0, 64.0]
+    class_weight: [null, balanced]
+  windows: [null, 30]                      # score long comments in 30-word windows (max)
+  use_synthetic: [true, false]             # compared once for the best setting (ablation)
+  selection_metric: f1                     # threshold and settings chosen by validation F1
+  recall_target: 0.95                      # also report the threshold reaching this recall

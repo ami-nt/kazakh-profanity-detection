@@ -1,0 +1,88 @@
+{
+  "rows_in_sheet": 6428,
+  "dropped_not_kazakh": 0,
+  "dropped_unlabeled": 0,
+  "prof_lang_filled_automatically": 493,
+  "exact_duplicates_removed": 0,
+  "duplicate_label_conflicts": 0,
+  "seed": 42,
+  "near_dup_threshold": 0.8,
+  "total_examples": 6428,
+  "class_counts": {
+    "0": 3593,
+    "1": 2835
+  },
+  "near_duplicate_groups_with_2plus": 65,
+  "largest_group": 22,
+  "splits": {
+    "train": {
+      "n": 4495,
+      "label_1": 1985,
+      "label_0": 2510
+    },
+    "val": {
+      "n": 962,
+      "label_1": 420,
+      "label_0": 542
+    },
+    "test": {
+      "n": 971,
+      "label_1": 430,
+      "label_0": 541
+    }
+  },
+  "by_pool": {
+    "candidate": {
+      "n": 2628,
+      "label_1": 2395
+    },
+    "insult": {
+      "n": 500,
+      "label_1": 409
+    },
+    "lookalike": {
+      "n": 300,
+      "label_1": 3
+    },
+    "one_star": {
+      "n": 1500,
+      "label_1": 22
+    },
+    "random": {
+      "n": 1500,
+      "label_1": 6
+    }
+  },
+  "by_domain": {
+    "appstore": {
+      "n": 4999,
+      "label_1": 2805
+    },
+    "bookstore": {
+      "n": 219,
+      "label_1": 11
+    },
+    "mapping": {
+      "n": 405,
+      "label_1": 17
+    },
+    "market": {
+      "n": 805,
+      "label_1": 2
+    }
+  },
+  "prof_lang_of_positives": {
+    "kk": 1570,
+    "ru": 906,
+    "mix": 315,
+    "unknown": 44
+  },
+  "ambiguous": 1,
+  "synthetic_train_examples": {
+    "latin_label0": 150,
+    "latin_label1": 150,
+    "masked_label1": 595,
+    "russian_letters_label0": 150,
+    "russian_letters_label1": 150
+  }
+}

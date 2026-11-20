@@ -1,0 +1,21 @@
+# raw KazSAnDRA download (rebuild with: python -m src.download_data)
+data/raw/
+# plain copy of the labeling pool (rebuild with: python -m src.build_labeling_pool)
+labeling/pool.csv
+# Python / notebooks
+__pycache__/
+*.pyc
+.venv/
+venv/
+.ipynb_checkpoints/
+# OS / editors
+.DS_Store
+.idea/
+.vscode/
+~$*.xlsx
+# temporary review lists for labeling (not part of the dataset)
+labeling/review/
+labeling/*backup*.xlsx
+# private files (assignment text, notes for the AI assistant)
+DSSC5113_Bonus_Project_Kazakh_Profanity_Detection.pdf
+CLAUDE.md
