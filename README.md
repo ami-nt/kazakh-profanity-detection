@@ -1,7 +1,7 @@
 # Kazakh Profanity Detection
 
 > **Content warning:** the dataset and code contain obscene words, because detecting them is the
-> task. In this README one letter of each profane word is masked (`қ*тақ`).
+> task. In this README one letter of each profane word is masked.
 
 This classifier reads one Kazakh product review or comment and predicts whether it contains
 profanity: `0` = no profanity, `1` = profanity present. Every prediction comes with its probability.
@@ -74,32 +74,30 @@ results report the false-positive rate on marketplace reviews separately (sectio
 The full rules are in [`docs/labeling_guidelines.md`](docs/labeling_guidelines.md).
 
 - **Label 1:**
-  - Kazakh obscene words and all their forms: қ\*тақ, с\*гейін, ам\*, амш\*қ.
-  - Vulgar body words: б\*қ, к\*т.
-  - Sexual slurs: ж\*леп.
-  - Russian mat and vulgar words used inside a Kazakh comment: х\*й, п\*здец, бл\*, за\*бал,
-    с\*ка, г\*вно.
+  - Kazakh obscene words and all their forms.
+  - Vulgar body words.
+  - Sexual slurs.
+  - Russian mat and vulgar words used inside a Kazakh comment.
   - English profanity.
-  - Insults, when used to insult: мал, ақымақ, есек, жынды, дурак, тупой.
-  - Euphemistic swearing: блин, капец, хрен.
-  - Curses, even without an obscene word: атаңның басы, құрып кет.
+  - Insults, when used to insult.
+  - Euphemistic swearing.
+  - Curses, even without an obscene word.
 - **Mixed-language comments:** profanity in any language inside a Kazakh comment counts. Russian
-  roots take Kazakh suffixes (за\*балсыңдар), so no consistent Kazakh/Russian line can be drawn,
+  roots take Kazakh suffixes, so no consistent Kazakh/Russian line can be drawn,
   and moderation treats both the same. The column `prof_lang` (`kk`/`ru`/`en`/`mix`) records the
   language of the profane word, so a strict Kazakh-only label can still be derived. Comments with
   no Kazakh at all are dropped.
-- **Spelling variations count:** Russian letters for Kazakh ones (котак), Latin script (qotaq,
-  sgin), mixed scripts, digits as letters (к0тақ), repeated or split letters (қ.о.т.а.қ), glued
-  words (қ\*тақбастар).
-- **Masked words** are `1` when still recognisable (қ\*ақбас, п\*здец). They are `0` when nothing
+- **Spelling variations count:** Russian letters for Kazakh ones, Latin script, mixed scripts, digits as letters, repeated or split letters,  glued
+  words.
+- **Masked words** are `1` when still recognisable. They are `0` when nothing
   identifiable remains: `****`, star ratings like `5*****`, sizes like `45*45`.
 - **Label 0:**
   - Harsh negative reviews that use none of the words above.
-  - Insult words in their ordinary meaning: мал азығы (livestock feed), сасық иіс (a bad smell).
+  - Insult words in their ordinary meaning.
   - The plain interjection ойбай.
-  - Words that name swearing: боқтық сөз.
-  - Look-alikes: адам, Амина, көтеру.
-  - Literal meanings: жалап = "licking", қаншық = a female dog in a pet review.
+  - Words that name swearing.
+  - Look-alikes.
+  - Literal meanings.
 - **Ambiguous cases:** the annotator keeps the more likely label and sets `ambiguous = 1`. These
   rows are counted in the statistics and reported as their own slice.
 
@@ -232,7 +230,7 @@ Public figures (Абай, Тоқаев, Назарбаев) and names of places 
 | Step | What happens | Code |
 |---|---|---|
 | 1 | Contact details become `<PHONE>`, `<EMAIL>`, `<URL>`, `<USER>`, `<NUMBER>` | `pii.scrub` |
-| 2 | Normalization:<br>• HTML entities, Unicode NFKC, invisible characters removed, lowercase<br>• letters split by dots, dashes or spaces are joined<br>• Latin look-alike letters inside Cyrillic words are fixed (`kотақ` → `котақ`)<br>• digits and `@` inside words become letters (`к0тақ` → `котақ`)<br>• mask symbols touching a letter become one `*`<br>• punctuation, emoji and underscores become spaces<br>• runs of 3+ identical letters become one (`бляяя` → `бля`)<br>• optionally, Kazakh letters are folded to Russian ones (`қ` → `к`) | `normalize.normalize` |
+| 2 | Normalization:<br>• HTML entities, Unicode NFKC, invisible characters removed, lowercase<br>• letters split by dots, dashes or spaces are joined<br>• Latin look-alike letters inside Cyrillic words are fixed <br>• digits and `@` inside words become letters <br>• mask symbols touching a letter become one `*`<br>• punctuation, emoji and underscores become spaces<br>• runs of 3+ identical letters become one <br>• optionally, Kazakh letters are folded to Russian ones  | `normalize.normalize` |
 | 3 | Comments longer than the window (if enabled) are cut into overlapping word windows | `model.make_windows` |
 | 4 | Character n-grams are turned into a TF-IDF vector. Vocabulary and IDF are fitted on the training split only | `TfidfVectorizer` |
 | 5 | `score = w · x + b` | `LogisticRegression` |
